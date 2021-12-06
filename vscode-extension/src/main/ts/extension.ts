@@ -26,21 +26,18 @@ import {
   Executable,
 } from "vscode-languageclient/node";
 
-const MISSING_JAVA_ERROR =
-  "Could not locate valid JDK. To configure JDK manually, use the groovy.java.home setting.";
-const INVALID_JAVA_ERROR =
-  "The groovy.java.home setting does not point to a valid JDK.";
-const INITIALIZING_MESSAGE = "Initializing Groovy language server...";
-const RELOAD_WINDOW_MESSAGE =
-  "To apply new settings for Groovy, please reload the window.";
-const STARTUP_ERROR = "The Groovy extension failed to start.";
+const MISSING_JAVA_ERROR = "Could not locate valid JDK. To configure JDK manually, use the nextflow.java.home setting.";
+const INVALID_JAVA_ERROR = "The nextflow.java.home setting does not point to a valid JDK.";
+const INITIALIZING_MESSAGE = "Initializing Nextflow language server...";
+const RELOAD_WINDOW_MESSAGE = "To apply new settings for Nextflow, please reload the window.";
+const STARTUP_ERROR = "The Nextflow extension failed to start.";
 const LABEL_RELOAD_WINDOW = "Reload Window";
 let extensionContext: vscode.ExtensionContext | null = null;
 let languageClient: LanguageClient | null = null;
 let javaPath: string | null = null;
 
 function onDidChangeConfiguration(event: vscode.ConfigurationChangeEvent) {
-  if (event.affectsConfiguration("groovy.java.home")) {
+  if (event.affectsConfiguration("nextflow.java.home")) {
     javaPath = findJava();
     //we're going to try to kill the language server and then restart
     //it with the new settings
@@ -79,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.workspace.onDidChangeConfiguration(onDidChangeConfiguration);
 
   vscode.commands.registerCommand(
-    "groovy.restartServer",
+    "nextflow.restartServer",
     restartLanguageServer
   );
 
@@ -104,7 +101,7 @@ function startLanguageServer() {
         if (!javaPath) {
           resolve();
           let settingsJavaHome = vscode.workspace
-            .getConfiguration("groovy")
+            .getConfiguration("nextflow")
             .get("java.home") as string;
           if (settingsJavaHome) {
             vscode.window.showErrorMessage(INVALID_JAVA_ERROR);
@@ -115,9 +112,9 @@ function startLanguageServer() {
         }
         progress.report({ message: INITIALIZING_MESSAGE });
         let clientOptions: LanguageClientOptions = {
-          documentSelector: [{ scheme: "file", language: "groovy" }],
+          documentSelector: [{ scheme: "file", language: "nextflow" }],
           synchronize: {
-            configurationSection: "groovy",
+            configurationSection: "nextflow",
           },
           uriConverters: {
             code2Protocol: (value: vscode.Uri) => {
@@ -138,7 +135,7 @@ function startLanguageServer() {
           path.resolve(
             extensionContext.extensionPath,
             "bin",
-            "groovy-language-server-all.jar"
+            "nextflow-language-server-all.jar"
           ),
         ];
         //uncomment to allow a debugger to attach to the language server
@@ -148,8 +145,8 @@ function startLanguageServer() {
           args: args,
         };
         languageClient = new LanguageClient(
-          "groovy",
-          "Groovy Language Server",
+          "nextflow",
+          "Nextflow Language Server",
           executable,
           clientOptions
         );

@@ -6,7 +6,7 @@ task build {
 }
 
 task copyJar(type: Copy) {
-    from "$projectDir/../build/libs/groovy-language-server-all.jar"
+    from "$projectDir/../build/libs/nextflow-language-server-all.jar"
     into "$buildDir/bin"
 }
 
@@ -33,7 +33,7 @@ task webpack(type: Exec) {
 
 task vsce(type: Exec) {
   inputs.dir("$buildDir")
-  outputs.file("$buildDir/groovy-0.0.0.vsix")
+  outputs.file("$buildDir/nextflow-0.0.0.vsix")
 
   def vsce = "$projectDir/node_modules/.bin/vsce"
   if (System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("windows")) {

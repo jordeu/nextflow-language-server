@@ -28,7 +28,7 @@ export default function findJava(): string | null {
   }
 
   let settingsJavaHome = vscode.workspace
-    .getConfiguration("groovy")
+    .getConfiguration("nextflow")
     .get("java.home") as string;
   if (settingsJavaHome) {
     let javaPath = path.join(settingsJavaHome, "bin", executableFile);

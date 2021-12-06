@@ -1,8 +1,19 @@
 # Ignore Gradle project-specific cache directory
-.gradle
+.gradle/
+build/
+bin/
 
-# Ignore Gradle build output directory
-build
+# Ignore IDEA files
+.idea/
 
-# Ignore idea files
-.idea
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Java
+*.class
+
+# Node.js
+node_modules/

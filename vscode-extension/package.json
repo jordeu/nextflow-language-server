@@ -1,25 +1,24 @@
 {
-  "name": "groovy",
-  "displayName": "Groovy",
-  "description": "Language support for Groovy",
+  "name": "nextflow",
+  "displayName": "Nextflow",
+  "description": "Language support for Nextflow",
   "version": "0.0.0",
   "publisher": "publisher",
-  "homepage": "https://github.com/prominic/groovy-language-server",
+  "homepage": "https://github.com/jordeu/nextflow-language-server",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prominic/groovy-language-server.git"
+    "url": "https://github.com/jordeu/nextflow-language-server.git"
   },
   "bugs": {
-    "url": "https://github.com/prominic/groovy-language-server/issues"
+    "url": "https://github.com/jordeu/nextflow-language-server/issues"
   },
-  "license": "Apache-2.0",
+  "license": "MPL-2",
   "private": true,
   "categories": [
     "Programming Languages"
   ],
   "keywords": [
-    "Groovy",
-    "Grails"
+    "Nextflow"
   ],
   "main": "extension",
   "engines": {
@@ -37,33 +36,33 @@
     "webpack-cli": "^4.7.2"
   },
   "activationEvents": [
-    "onLanguage:groovy",
-    "onCommand:groovy.restartServer"
+    "onLanguage:nextflow",
+    "onCommand:nextflow.restartServer"
   ],
   "contributes": {
     "languages": [
       {
-        "id": "groovy",
+        "id": "nextflow",
         "extensions": [
-          ".groovy"
+          ".nf"
         ],
         "aliases": [
-          "Groovy"
+          "Nextflow"
         ]
       }
     ],
     "commands": [
       {
-        "command": "groovy.restartServer",
-        "title": "Restart Groovy language server",
-        "category": "Groovy"
+        "command": "nextflow.restartServer",
+        "title": "Restart Nextflow language server",
+        "category": "Nextflow"
       }
     ],
     "configuration": {
       "type": "object",
-      "description": "Groovy configuration",
+      "description": "Nextflow configuration",
       "properties": {
-        "groovy.java.home": {
+        "nextflow.java.home": {
           "type": [
             "string",
             "null"
@@ -71,7 +70,7 @@
           "default": null,
           "description": "Specifies the folder path to the JDK. Use this setting if the extension cannot find Java automatically."
         },
-        "groovy.classpath": {
+        "nextflow.classpath": {
           "type": "array",
           "default": null,
           "description": "Specifies additional entries to add to the classpath. May contain both folders and individual .jar files.",

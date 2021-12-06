@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build-groovy-extension",
+      "label": "build-nextflow-extension",
       "command": "./gradlew",
       "windows": {
         "command": "./gradlew.bat"
